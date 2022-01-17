@@ -1,0 +1,20 @@
+---
+- name: Clone the scripts
+  git:
+    repo: https://github.com/Hakkin/streamRIP.git
+    dest: /usr/local/nginx/streamRIP/
+
+- name: Copy templated config.sh
+  template:
+    src: config.sh
+    dest: /usr/local/nginx/streamRIP/config.sh
+
+- name: Copy conf file
+  copy:
+    src: streamrip.conf
+    dest: /usr/local/nginx/conf/nginx.conf
+
+- name: Restart service nginx
+  ansible.builtin.systemd:
+    state: restarted
+    name: nginx

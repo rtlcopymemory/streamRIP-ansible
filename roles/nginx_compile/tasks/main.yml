@@ -1,0 +1,42 @@
+---
+- name: create /src if not existing
+  file:
+    path: /src
+    state: directory
+
+- name: Clone nginx
+  git:
+    repo: https://github.com/nginx/nginx.git
+    dest: /src/nginx
+
+- name: Clone rtmp
+  git:
+    repo: https://github.com/arut/nginx-rtmp-module.git
+    dest: /src/nginx-rtmp
+
+- name: Configure nginx
+  shell:
+    cmd: ./auto/configure --add-module=/src/nginx-rtmp
+    chdir: /src/nginx/
+
+- name: Make nginx
+  shell:
+    cmd: make
+    chdir: /src/nginx/
+
+- name: Install nginx
+  shell:
+    cmd: make install
+    chdir: /src/nginx/
+
+- name: Add nginx service
+  copy:
+    src: nginx.service
+    dest: /lib/systemd/system/nginx.service
+
+- name: Enable adn start service nginx and ensure it is not masked
+  systemd:
+    name: nginx
+    state: started
+    enabled: yes
+    masked: no

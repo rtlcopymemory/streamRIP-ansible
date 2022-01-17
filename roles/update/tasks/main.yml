@@ -1,0 +1,14 @@
+---
+- name: Update
+  apt:
+    update_cache: yes
+
+- name: Install needed packages
+  apt:
+    pkg:
+      - build-essential
+      - libpcre3
+      - libpcre3-dev
+      - libssl-dev
+      - zlib1g-dev
+      - ffmpeg

@@ -1,0 +1,8 @@
+---
+- name: Update web servers
+  hosts: all
+  become: true
+  roles:
+    - update
+    - nginx_compile
+    - streamrip
