@@ -34,6 +34,11 @@
     src: nginx.service
     dest: /lib/systemd/system/nginx.service
 
+- name: Copy conf file
+  copy:
+    src: streamrip.conf
+    dest: /usr/local/nginx/conf/nginx.conf
+
 - name: Enable adn start service nginx and ensure it is not masked
   systemd:
     name: nginx

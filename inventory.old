@@ -1,0 +1,12 @@
+server ansible_host=192.168.153.131 ansible_user=vm
+
+[all:vars]
+# The file to play when the stream is offline, should be full path, and must be readable by nginx
+# The file should have the same resolution and bitrate as your actual stream
+offfi=/root/offline.mp4
+
+# Should be some random unguessable string, this will be your stream key for streamRIP
+secret=h9f34h79f34h8934h9f4h9f49
+
+# The RTMP endpoint, ie: your Twitch RTMP link
+rtmpe=rtmp://mil02.contribute.live-video.net/app/live_29699916_GdKeeDU49UD5D8n67x3LMYdB8UqIiW

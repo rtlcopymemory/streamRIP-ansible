@@ -9,11 +9,6 @@
     src: config.sh
     dest: /usr/local/nginx/streamRIP/config.sh
 
-- name: Copy conf file
-  copy:
-    src: streamrip.conf
-    dest: /usr/local/nginx/conf/nginx.conf
-
 - name: Prepare /tmp/streamrip folder
   file:
     path: /tmp/streamrip/
