@@ -1,2 +1,4 @@
 venv/
 inventory
+inventory*
+!inventory.example
